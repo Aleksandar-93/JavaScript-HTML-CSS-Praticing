@@ -53,11 +53,11 @@ let currentItem = 0;
 
 // load intial item
 window.addEventListener('DOMContentLoaded', () =>{
-  showPerson(currentItem);
+  showPerson();
 });
 
 // show person based on item
-const showPerson = person =>{
+const showPerson = () =>{
   const item = reviews[currentItem];
   img.src = item.img;
   author.textContent = item.name;
@@ -71,7 +71,7 @@ nextBtn.addEventListener('click', () =>{
   if(currentItem > reviews.length - 1){
     currentItem = 0;
   }
-  showPerson(currentItem);
+  showPerson();
 });
 // show prev peron 
 prevBtn.addEventListener('click', () =>{
@@ -79,10 +79,10 @@ prevBtn.addEventListener('click', () =>{
   if(currentItem < 0){
     currentItem = reviews.length - 1;
   }
-  showPerson(currentItem);
+  showPerson();
 });
 // show random peron 
 randomBtn.addEventListener('click', () =>{
   currentItem = Math.floor(Math.random() *reviews.length)
-  showPerson(currentItem);
+  showPerson();
 });
