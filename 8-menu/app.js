@@ -76,7 +76,12 @@ const menu = [
 const sectionCenter = document.querySelector(".section-center");
 // on load display items from array
 window.addEventListener('DOMContentLoaded', () =>{
-  let displayMenu = menu.map(item=>{
+  displayMenuItems(menu);
+});
+
+
+function displayMenuItems(menuItems){
+  let displayMenu = menuItems.map(item=>{
 
     return `<article class="menu-item">
     <img src=${item.img} class="photo" alt=${item.title} />
@@ -93,4 +98,4 @@ window.addEventListener('DOMContentLoaded', () =>{
   })
   displayMenu = displayMenu.join('');
   sectionCenter.innerHTML =displayMenu;
-});
+}
