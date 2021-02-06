@@ -71,38 +71,25 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "stake dinner",
+    category: "dinner",
+    price: 39.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
 
 const sectionCenter = document.querySelector(".section-center");
-const filterBtns = document.querySelectorAll('.filter-btn');
+const container = document.querySelector('.btn-container');
 
 
 // on load display items from array
 window.addEventListener('DOMContentLoaded', () => {
   displayMenuItems(menu);
+  displayMenuBtns();
 });
-
-// filter menu items
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const category = e.currentTarget.dataset.id;
-     const menuCategory = menu.filter((menuItems)=>{
-      //  console.log(menuItems.category);
-      if(menuItems.category === category){
-        
-        return menuItems;
-      }
-     });
-    //  console.log(menuCategory);
-    if(category === "all"){
-      displayMenuItems(menu);
-    }else{
-      displayMenuItems(menuCategory);
-    }
-  })
-});
-
-
 
 // display items
 function displayMenuItems(menuItems) {
@@ -124,3 +111,44 @@ function displayMenuItems(menuItems) {
   displayMenu = displayMenu.join('');
   sectionCenter.innerHTML = displayMenu;
 }
+
+// Display menu butns
+function displayMenuBtns(){
+  const categories = menu.reduce((values, item)=>{
+    if(!values.includes(item.category)){
+      values.push(item.category);
+    }
+
+    return values;
+  },['all']);
+
+  const categoryBtns = categories.map((category)=>{
+     return `
+     <button class="filter-btn" type="button" data-id=${category}>${category}</button>
+     `
+  }).join('');
+  container.innerHTML = categoryBtns;
+  
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  // filter menu items
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const category = e.currentTarget.dataset.id;
+     const menuCategory = menu.filter((menuItems)=>{
+      //  console.log(menuItems.category);
+      if(menuItems.category === category){
+        
+        return menuItems;
+      }
+     });
+    //  console.log(menuCategory);
+    if(category === "all"){
+      displayMenuItems(menu);
+    }else{
+      displayMenuItems(menuCategory);
+    }
+  })
+});
+}
+
+
