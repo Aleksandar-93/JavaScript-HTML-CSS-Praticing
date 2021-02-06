@@ -131,24 +131,24 @@ function displayMenuBtns(){
   
   const filterBtns = document.querySelectorAll('.filter-btn');
   // filter menu items
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const category = e.currentTarget.dataset.id;
-     const menuCategory = menu.filter((menuItems)=>{
-      //  console.log(menuItems.category);
-      if(menuItems.category === category){
-        
-        return menuItems;
+    filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter((menuItems)=>{
+        //  console.log(menuItems.category);
+        if(menuItems.category === category){
+          
+          return menuItems;
+        }
+      });
+      //  console.log(menuCategory);
+      if(category === "all"){
+        displayMenuItems(menu);
+      }else{
+        displayMenuItems(menuCategory);
       }
-     });
-    //  console.log(menuCategory);
-    if(category === "all"){
-      displayMenuItems(menu);
-    }else{
-      displayMenuItems(menuCategory);
-    }
-  })
-});
+    })
+  });
 }
 
 
