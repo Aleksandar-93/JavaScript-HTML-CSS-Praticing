@@ -47,3 +47,29 @@ window.addEventListener('scroll', ()=>{
 
 // ********** smooth scroll ************
 // select links
+const ScrollLinks = document.querySelectorAll('.scroll-link');
+
+ScrollLinks.forEach((link)=>{
+    link.addEventListener('click', (e)=>{
+         // prevent default
+        e.preventDefault();
+        // navigate to sepcific spot
+        const id = e.currentTarget.getAttribute('href').slice(1);
+        const element = document.getElementById(id);
+        //calulate the hights
+        const navHeight = navbar.getBoundingClientRect().height;
+        const containerHeight = linksContaner.getBoundingClientRect().height;
+        const fixedNav = navbar.classList.contains('fixed-nav');
+        let position = element.offsetTop - navHeight;
+
+        if(!fixedNav){
+            position = position - navHeight;
+        }
+        window.scrollTo({
+            left:0,
+            top:position,
+        });
+        //close link contaner when klicked
+        linksContaner.style.height = 0;
+    });
+});
