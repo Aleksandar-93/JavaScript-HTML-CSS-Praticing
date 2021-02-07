@@ -65,6 +65,10 @@ ScrollLinks.forEach((link)=>{
         if(!fixedNav){
             position = position - navHeight;
         }
+        //on small screen add contanerHeight because links are open and H is bigger
+        if(navHeight > 82){
+            position = position + containerHeight;
+        }
         window.scrollTo({
             left:0,
             top:position,
