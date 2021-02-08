@@ -27,7 +27,7 @@ const deadline = document.querySelector('.deadline');
 const items = document.querySelectorAll('.deadline-format h4');
 
 // set giveaway date
-let futureDate = new Date(2021,4,24,11,30,0);
+let futureDate = new Date(2021,3,8,11,30,0);
 
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
@@ -60,11 +60,8 @@ function getRemainingTime(){
   // calculate all values
   let days = t/oneDay;
   days = Math.floor(days);
-  
   let hours = Math.floor((t % oneDay) / oneHour);
-
   let minutes = Math.floor((t % oneHour) / oneMinute);
-
   let seconds = Math.floor((t % oneMinute) / 1000);
   
   // Set values array;
@@ -80,6 +77,14 @@ function getRemainingTime(){
   items.forEach((item,index )=> {
     item.innerHTML = format(values[index]);
   });
+
+  if(t < 0){
+  clearInterval(countdown);
+  deadline.innerHTML = `<h4 class="expired">Sorry, this giveawey hes expired</h4>`
+  }
 }
+// countdown
+let countdown = setInterval(getRemainingTime, 1000);
 
 getRemainingTime();
+  
