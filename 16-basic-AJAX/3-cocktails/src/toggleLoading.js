@@ -7,5 +7,7 @@ export const showLoading =()=>{
 }
 
 export const hideLoading =()=>{
+    setTimeout(()=>{
     loading.classList.add('hide-loading')
+ }, 500);
 }
