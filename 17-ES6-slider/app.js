@@ -37,9 +37,21 @@ const startSlider = (type) =>{
     if(!next){
        next = container.firstElementChild; 
     }
-    active.classList.remove(['active'])
-    last.classList.remove(['last'])
-    next.classList.remove(['next'])
+    active.classList.remove(['active']);
+    last.classList.remove(['last']);
+    next.classList.remove(['next']);
+    //prev btn
+    if(type === 'prev'){
+        active.classList.add('next');
+        last.classList.add('active');
+        next= last.previousElementSibling;
+        if(!next){
+            next= container.lastElementChild;
+        }
+        next.classList.remove(['next']);
+        next.classList.add('last')
+        return;
+    }
 
     active.classList.add('last')
     last.classList.add('next')
