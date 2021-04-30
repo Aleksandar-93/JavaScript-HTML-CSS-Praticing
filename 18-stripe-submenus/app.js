@@ -18,7 +18,6 @@ closeBtn.addEventListener('click', ()=>{
 });
 
 // set sidebar
-
 sideBar.innerHTML = sublinks.map((item)=>{
     const {links,page} = item;
     return ` <article>
@@ -32,3 +31,16 @@ sideBar.innerHTML = sublinks.map((item)=>{
         </div>
     </article>`
 }).join('');
+
+linkBtns.forEach((btn)=>{
+    btn.addEventListener('mouseover', function(e){
+       const text = e.currentTarget.textContent;
+       const tempBtn = e.currentTarget.getBoundingClientRect();//get btn cordinate
+       const center = (tempBtn.left + tempBtn.right) / 2;
+       const bottom = tempBtn.bottom -3;
+       
+       submenu.classList.add('show');
+       submenu.style.left = `${center}px`;
+       submenu.style.top = `${bottom}px`;
+    });
+});
